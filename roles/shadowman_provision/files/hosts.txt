@@ -1,3 +1,3 @@
-fnbtest1.shadowman.dev
-fnbtest2.shadowman.dev
-fnbtest3.shadowman.dev
+fnbtest1.ad.shadowman.dev
+fnbtest2.ad.shadowman.dev
+fnbtest3.ad.shadowman.dev
