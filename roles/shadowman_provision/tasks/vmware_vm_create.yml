@@ -1,27 +1,19 @@
 ---
 - name: Read hosts.txt and create a list of VM names
   ansible.builtin.set_fact:
-    vm_names_test: "{{ lookup('file', 'files/hosts.txt').splitlines() }}"
-
-- name: Show the list of VM names
-  ansible.builtin.debug:
-    var: vm_names_test
+    vm_names_raw: "{{ lookup('file', 'files/hosts.txt').splitlines() }}"
 
 - name: Check whether hostname is used already in hosts.txt
   community.vmware.vmware_vm_info:
     vm_name: "{{ item }}"
     validate_certs: false
-  loop: "{{ vm_names_test }}"
+  loop: "{{ vm_names_raw }}"
   register: hostname_output
   ignore_errors: true
 
 - name: Create list based on hostnames that don't exist yet
   ansible.builtin.set_fact:
     vm_names: "{{ [(hostname_output['results'] | selectattr('failed', 'equalto', true) | map(attribute='item') | list) | first] }}"
-
-- name: Debug;
-  ansible.builtin.debug:
-    var: vm_names
 
 - name: Change facts if running Windows
   ansible.builtin.set_fact:
