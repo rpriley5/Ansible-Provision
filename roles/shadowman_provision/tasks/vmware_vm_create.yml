@@ -108,3 +108,12 @@
     state: add
     validate_certs: false
   loop: "{{ vm_names }}"
+
+
+- name: Gather one specific VM
+  community.vmware.vmware_vm_info:
+    # hostname: '{{ vcenter_hostname }}'
+    # username: '{{ vcenter_username }}'
+    # password: '{{ vcenter_password }}'
+    vm_name: "{{ item }}"
+  loop: "{{ vm_names_test }}"
