@@ -118,8 +118,12 @@
   register: hostname_output
   ignore_errors: true
 
+- name: Filter list based on hosts that don't exist
+  ansible.builtin.set_fact:
+    available_hostnames: "{{ hostname_output['results'] | selectattr('failed', 'equalto', 'true') | list }}"
+
 - name: Show the list of VM names
   ansible.builtin.debug:
-    var: hostname_output
+    var: available_hostnames
 
 ...
