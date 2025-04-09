@@ -39,7 +39,8 @@
     datastore: '{{ datastore_id }}'
     folder: '{{ folder_id }}'
     datacenter: "Shadowman-DC"
-    name: "{{ item }}"
+    # name: "{{ item }}"
+    name: "{{ vm_name }}"
     state: "{{ state }}"
     template: "{{ source_vm_id }}"
     validate_certs: false
@@ -51,12 +52,12 @@
       domain: ad.shadowman.dev
       autologon: true
       autologoncount: 1
-      hostname: "{{ item.split('.')[0] }}"
+      hostname: "{{ vm_name.split('.')[0] }}"
       productid: "{{ productid }}"
       password: "{{ windowspassword }}"
       runonce:
         - powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert
-  loop: "{{ vm_names }}"
+  # loop: "{{ vm_names }}"
   when: operating_system is match("Win.*")
   register: async_results
   async: 1000

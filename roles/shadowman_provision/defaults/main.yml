@@ -3,6 +3,7 @@ datacenter: Default
 cluster: Default
 template: "{{ operating_system }}_ShadowMan"
 vm_memory: 4GiB
+vm_name: "fnbtest1.ad.shadowman.dev"
 vm_names: "{{ vm_name.split(',') }}"
 vm_template: 71a8e15d-3602-41f7-8e2c-4689863131ef
 vm_memory_terraform: 4096
