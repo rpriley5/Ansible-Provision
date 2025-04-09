@@ -31,6 +31,6 @@
   ansible.builtin.include_tasks: vmware_vm_create.yml
   when: shadowman_provision_hypervisor == "VMWare"
 
-- name: VMWare VM Wait
-  ansible.builtin.include_tasks: vmware_wait.yml
-  when: shadowman_provision_hypervisor == "VMWare"
+# - name: VMWare VM Wait
+#   ansible.builtin.include_tasks: vmware_wait.yml
+#   when: shadowman_provision_hypervisor == "VMWare"
