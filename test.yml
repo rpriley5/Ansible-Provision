@@ -1,0 +1,12 @@
+---
+- name: Read hosts.txt and create list of VM names
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Read hosts.txt and create a list of VM names
+      ansible.builtin.set_fact:
+        vm_names: "{{ lookup('file', '/home/rriley/ansible/Ansible-Provision/roles/shadowman_provision/files/hosts.txt').splitlines() }}"
+
+    - name: Show the list of VM names
+      ansible.builtin.debug:
+        var: vm_names

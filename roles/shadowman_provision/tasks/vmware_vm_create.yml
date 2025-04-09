@@ -1,4 +1,12 @@
 ---
+- name: Read hosts.txt and create a list of VM names
+  ansible.builtin.set_fact:
+    vm_names_test: "{{ lookup('file', 'files/hosts.txt').splitlines() }}"
+
+- name: Show the list of VM names
+  ansible.builtin.debug:
+    var: vm_names_test
+
 - name: Change facts if running Windows
   ansible.builtin.set_fact:
     operating_system_tag: "Windows"
