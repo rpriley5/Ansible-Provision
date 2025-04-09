@@ -76,7 +76,7 @@
       password: "{{ windowspassword }}"
       runonce:
         - powershell.exe -ExecutionPolicy ByPass -File C:\Windows\Temp\ConfigureRemotingForAnsible.ps1 -ForceNewSSLCert
-  loop: "{{ vm_names[0] }}"
+  loop: "{{ vm_names[0] | list }}"
   when: operating_system is match("Win.*")
   register: async_results
   async: 1000
