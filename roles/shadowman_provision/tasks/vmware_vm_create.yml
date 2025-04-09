@@ -116,6 +116,7 @@
     validate_certs: false
   loop: "{{ vm_names_test }}"
   register: hostname_output
+  ignore_errors: true
 
 - name: Show the list of VM names
   ansible.builtin.debug:
